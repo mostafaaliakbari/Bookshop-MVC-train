@@ -1,0 +1,24 @@
+﻿@* using UI_MVC.Entitis *@;
+
+@model UI_MVC.Entitis.Book;
+@{
+    var cat = ViewBag.Categories;
+}
+
+@{
+}
+<form asp-action="CreateBook" method="post" enctype="multipart/form-data">
+    <input asp-for="Title" type="text" placeholder="Name" />
+    <input asp-for="Author" type="text" placeholder="Writer" />
+    <input asp-for="PageCount" type="text" placeholder="PageCount" />
+    <input asp-for="File" type="file" placeholder="ImageAddress" />
+
+    <select asp-for="CategoryId">
+        @foreach (var item in cat)
+        {
+            <option value="@item.Id">@item.Name</option>
+        }
+    </select>
+
+    <input type="submit" value="Create" />
+</form>

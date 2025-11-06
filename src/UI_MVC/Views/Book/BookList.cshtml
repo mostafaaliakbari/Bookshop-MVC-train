@@ -1,0 +1,90 @@
+﻿@model BooklistViewModel
+@{
+    ViewData["Title"] = "فروشگاه کتاب";
+}
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+           
+            <ul class="nav-links">
+                
+                
+                <li><a href="#">خانه</a></li>
+                <li><a href="#">دسته‌بندی‌ها</a></li>
+                <li><a href="#">کتاب‌ها</a></li>
+                <li><a href="#">تماس با ما</a></li>
+                <li><a href="@Url.Action("CreateBook", "Book")"> افزودن کتاب</a></li>
+                <li><a href="@Url.Action("Register", "Account")"> ورود</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- هدر اصلی -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">هر کتاب که می‌خواهی، اینجا هست</h1>
+            <p class="hero-subtitle">
+                با پیش از کلی کتاب!!!در دسته‌بندی‌های مختلف، سفر مطالعاتی خود را آغاز کنید.
+            </p>
+            <button   type="button">مشاهده پرفروش ها</button>
+        </div>
+    </section>
+
+    <!-- بخش دسته‌بندی‌ها -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title">دسته‌بندی‌ها</h2>
+            <div class="categories-flex">
+                @foreach (var category in Model.Categories)
+                {
+                    <div class="category-card">
+                        <div class="category-icon">
+                            <span>📚</span>
+                        </div>
+                        <h3 class="category-name">@category.Name</h3>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش جدیدترین کتاب‌ها -->
+    <section class="books-section">
+        <div class="container">
+            <h2 class="section-title">جدیدترین کتاب‌ها</h2>
+            <div class="books-flex">
+                @foreach (var book in Model.Books.Take(4))
+                {
+                    <div class="book-card">
+                        <img src="~/@book.ImgAddress" alt="@book.Title" class="book-image" />
+                        <div class="book-info">
+                            <h3 class="book-title">@book.Title</h3>
+                            <p class="book-author">@book.Author</p>
+                            <div class="book-price">@book.Price.ToString()  هزار تومان</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <footer class="simple-footer">
+        <div class="container">
+            <div class="footer-text">
+                <h6 style="Coler = White">خانه کتاب</h6>
+                <p>کلیه حقوقش مال hw مکتبه</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

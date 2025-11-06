@@ -1,0 +1,52 @@
+﻿
+@model User
+
+
+@{
+    ViewData["Title"] = "ثبت‌ نام کاربر جدید";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-3 mx-auto" style="max-width: 500px;">
+        <div class="card-header bg-success text-white text-center">
+            <h4>فرم ثبت‌نام</h4>
+        </div>
+        <div class="card-body">
+
+            <form method="post" asp-action="Register">
+
+                @* 1. فیلد Name *@
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">نام و نام خانوادگی</label>
+                    <input asp-for="Name" class="form-control" required />
+                </div>
+
+                @* 2. فیلد UserName *@
+                <div class="mb-3">
+                    <label asp-for="UserName" class="form-label">نام کاربری</label>
+                    <input asp-for="UserName" class="form-control" required />
+                </div>
+
+                @* 3. فیلد Password *@
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">رمز عبور</label>
+                    <input asp-for="Password" type="password" class="form-control" required />
+                </div>
+
+                @* 4. فیلد Role (Dropdown) *@
+                <div class="mb-3">
+                    <label asp-for="Role" class="form-label">نقش کاربری</label>
+                    <select asp-for="Role" asp-items="Html.GetEnumSelectList<Role>()" class="form-select">
+                        <option selected>لطفا یک نقش را انتخاب کنید</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100 mt-3">ثبت‌نام</button>
+                <div class="text-center mt-2">
+                    <a asp-action="Login">قبلاً ثبت‌نام کرده‌اید؟ ورود</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

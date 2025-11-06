@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "ایجاد دسته بندی جدید";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg p-3">
+        <div class="card-header bg-primary text-white">
+            <h3>افزودن دسته‌بندی جدید</h3>
+        </div>
+        <div class="card-body">
+            @* 2. تعریف فرم با استفاده از Tag Helpers *@
+            <form method="post" asp-controller="Category" asp-action="CreateCategory">
+
+                <div class="mb-3">
+                    <label for="Title" class="form-label">نام دسته‌بندی</label>
+                    @* 3. فیلد ورودی: نام فیلد (name="Title") باید با پارامتر متد Controller یکی باشد *@
+                    <input type="text" name="Title" class="form-control" required placeholder="مثال: تاریخی" />
+                </div>
+
+                @* دکمه‌های عملیاتی *@
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-success me-md-2">
+                        <i class="bi bi-check-circle"></i> ذخیره
+                    </button>
+
+                    @* برگشت به لیست کتگوری‌ها *@
+                    <a asp-controller="Category" asp-action="List" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> بازگشت به لیست
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

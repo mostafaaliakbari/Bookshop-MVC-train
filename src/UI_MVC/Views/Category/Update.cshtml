@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "ویرایش موضوعات";
+}
+
+@model Category
+
+
+
+
+    <form method="post" asp-controller="Category" asp-action="Update">
+
+
+    </form>
+
+
+<form method="post" asp-action="Update">
+    @* 2. فیلد مخفی برای Id - حتماً باید باشد! *@
+    <input asp-for="Id" hidden /> 
+
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2>ویرایش دسته‌بندی</h2>
+            <hr />
+        </div>
+        
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            @* 3. فیلد ورودی Name - با استفاده از asp-for مقدار فعلی نمایش داده می‌شود *@
+            <input asp-for="Name" class="form-control" />
+        </div>
+        
+        <button type="submit" class="btn btn-primary" style="width:150px">به‌روزرسانی</button>
+        <a asp-controller="Category" asp-action="List" class="btn btn-secondary" style="width:150px">
+            بازگشت به لیست
+        </a>
+    </div>
+</form>
