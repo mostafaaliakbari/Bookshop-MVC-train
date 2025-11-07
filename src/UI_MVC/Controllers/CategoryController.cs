@@ -8,6 +8,10 @@ namespace UI_MVC.Controllers
         [HttpGet]
         public IActionResult List()
         {
+            //int? Roleint = HttpContext.Session.GetInt32("Role");
+            //if (Roleint != 1 || Roleint == null) {
+            //    return RedirectToAction("login","Account");
+            //}
             var listCategory = _categoryService.GetCategories();
             return View(listCategory);
         }
@@ -15,6 +19,11 @@ namespace UI_MVC.Controllers
         [HttpGet]
         public IActionResult Delete(int categoryId)
         {
+            //int? Roleint = HttpContext.Session.GetInt32("Role");
+            //if (Roleint != 1 || Roleint == null)
+            //{
+            //    return RedirectToAction("login", "Account");
+            //}
             _categoryService.Delete(categoryId);
             return RedirectToAction("List");
         }
@@ -22,7 +31,12 @@ namespace UI_MVC.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-           var category= _categoryService.GetCategory(id);
+            //int? Roleint = HttpContext.Session.GetInt32("Role");
+            //if (Roleint != 1 || Roleint == null)
+            //{
+            //    return RedirectToAction("login", "Account");
+            //}
+            var category= _categoryService.GetCategory(id);
             return View(category);
         }
         [HttpPost]
@@ -42,6 +56,11 @@ namespace UI_MVC.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            //int? Roleint = HttpContext.Session.GetInt32("Role");
+            //if (Roleint != 1 || Roleint == null)
+            //{
+            //    return RedirectToAction("login", "Account");
+            //}
             return View();
         }
     }

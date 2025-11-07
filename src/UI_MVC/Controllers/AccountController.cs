@@ -17,9 +17,10 @@ namespace UI_MVC.Controllers
             User user = _userService.Login(username, password);
             if (user != null)
             {
+               
                 if (user.Role == Role.ادمین)
                 {
-                    return RedirectToAction("List", "Category");
+                    return RedirectToAction("Dashboard", "Account");
                 }
 
             }
@@ -40,6 +41,52 @@ namespace UI_MVC.Controllers
         {
             _userService.Create(user);
             return RedirectToAction("Login");
+        }
+
+
+        [HttpGet]
+        public IActionResult List()
+        {
+      
+            var Users = _userService.GetUsers();
+            return View(Users);
+        }
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+     
+
+            var user = _userService.GetById(id);
+            if (user == null) return NotFound();
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public IActionResult Update(User user)
+        {
+     
+
+            _userService.Update(user);
+            return RedirectToAction("List");
+        }
+
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+           
+            _userService.Delete(id);
+            return RedirectToAction("List");
+        }
+
+
+        [HttpGet]
+        public IActionResult Dashboard()
+        {
+      
+            return View();
         }
 
 
