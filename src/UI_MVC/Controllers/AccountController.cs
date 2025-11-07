@@ -11,7 +11,7 @@ namespace UI_MVC.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost]    //اینو ببرسی کن
         public IActionResult Login(string username, string password)
         {
             User user = _userService.Login(username, password);
@@ -21,7 +21,11 @@ namespace UI_MVC.Controllers
                 if (user.Role == Role.ادمین)
                 {
                     return RedirectToAction("Dashboard", "Account");
+
                 }
+                else
+                    return RedirectToAction("BookList", "Book");
+
 
             }
 

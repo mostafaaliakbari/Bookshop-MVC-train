@@ -35,9 +35,24 @@ public class UserService : IUserService
         return userRepo.GetUser(username, password);
     }
 
-    public void Update(User u)
+    public void Update(User user)
     {
-        userRepo.Update(u);
+        var Orginal = userRepo.GetById(user.Id);
+        if (Orginal == null) {
+            return;
+        }
+
+        Orginal.Name = user.Name;
+        Orginal.UserName = user.UserName;
+        Orginal.Role = user.Role;
+
+        if (user.Password != null)
+        {
+         
+            Orginal.Password = user.Password;
+       
+        }
+        userRepo.Update(Orginal);
     }
 
     
